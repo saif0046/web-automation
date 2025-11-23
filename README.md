@@ -13,7 +13,7 @@ It uses **Pyppeteer (browser automation)** A port (copy) of Puppeteer from JavaS
 - Captures CAPTCHA screenshot
 - Preprocesses image for higher accuracy
 - Extracts text using EasyOCR
-- Fixes common OCR mistakes (O→9, S→5, etc.)
+- Fixes common OCR mistakes (0,O→9, S→5, etc.)
 - Types the CAPTCHA into input
 - Submits the form automatically
 - Logging and error handling
