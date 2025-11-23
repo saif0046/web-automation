@@ -6,7 +6,7 @@ It uses **Pyppeteer (browser automation)** A port (copy) of Puppeteer from JavaS
 
 ---
 
-# Features
+# 📌 Features
 
 - Automatically launches a browser
 - Navigates to the CAPTCHA page
@@ -62,51 +62,51 @@ CAPTCHA training dataset that matches the same style and distortion.
 Only after training such a model can we achieve high accuracy without applying preprocessing steps.
 
 ### Preprocessing Steps Explained
-1. Grayscale Conversion
+1. Grayscale Conversion (Refer to ocr/preprocess.py)
 ```bash
 $ img.convert("L")
 ```
 - Why: OCR works best on single-channel images. Removing color simplifies the data and makes thresholding more effective.
 
-2. Contrast Enhancement
+2. Contrast Enhancement (Refer to ocr/preprocess.py)
 ```bash
 $ enhancer.enhance(1.5)
 ```
 - Why: Increases the visibility of characters and strengthens edges, helping OCR correctly identify shapes.
 
-3. Sharpening Filter
+3. Sharpening Filter (Refer to ocr/preprocess.py)
 ```bash
 $ ImageFilter.SHARPEN
 ```
 - Why: Makes text edges clearer and reduces blur. Very useful when CAPTCHA letters are slightly soft or distorted.
 
-4. Noise Reduction (Denoising)
+4. Noise Reduction (Denoising) (Refer to ocr/preprocess.py)
 ```bash
 $ cv2.fastNlMeansDenoising(img_array, None, 10, 7, 21)
 ```
 - Why: Removes random noise pixels that often interfere with stroke detection. Without denoising, OCR sometimes read 
 noise as actual characters.
 
-5. Otsu Binary Thresholding
+5. Otsu Binary Thresholding (Refer to ocr/preprocess.py)
 ```bash
-$ cv2.threshold(..., cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+$ cv2.threshold(img_array, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
 ```
 - Why: Automatically converts the image to pure black & white depending on optimal thresholding.This emphasizes 
 characters and removes mid-tones that confuse OCR.
 
-6. Adaptive Thresholding
+6. Adaptive Thresholding (Refer to ocr/preprocess.py)
 ```bash
-$ cv2.adaptiveThreshold(..., cv2.ADAPTIVE_THRESH_GAUSSIAN_C)
+$ cv2.adaptiveThreshold(img_array, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 10)
 ```
 - Why: Useful when the CAPTCHA has uneven lighting or shadows. This method keeps letters clear even when brightness varies.
 
-7. Morphological Opening
+7. Morphological Opening (Refer to ocr/preprocess.py)
 ```bash
 $ cv2.morphologyEx(img_array, cv2.MORPH_OPEN, np.ones((2, 2), np.uint8))
 ```
 - Why: Removes tiny background dots and smooths the text region. Keeps only important character strokes.
 
-8. Upscaling Image Before OCR
+8. Upscaling Image Before OCR (Refer to ocr/reader.py)
 ```bash
 $ scaled = processed.resize((w * 3, h * 3))
 ```
