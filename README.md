@@ -30,13 +30,19 @@ $ source .venv/bin/activate  # Linux / Mac
 $ .venv\Scripts\activate     # Windows
 ```
 
-### 2. Install dependencies inside the virtual environment
+### 2. Navigate into the project folder
+
+```bash
+$ cd web_automation
+```
+
+### 3. Install dependencies inside the virtual environment
 
 ```bash
 $ pip install -r requirements.txt
 ```
 
-### 3. Run the main program
+### 4. Run the main program
 
 ```bash
 $ python3 -m src.main
