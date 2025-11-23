@@ -6,7 +6,7 @@ It uses **Pyppeteer (browser automation)** A port (copy) of Puppeteer from JavaS
 
 ---
 
-# 📌 Features
+# Features
 
 - Automatically launches a browser
 - Navigates to the CAPTCHA page
