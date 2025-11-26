@@ -7,6 +7,7 @@ async def init_browser(headless: bool = False):
     """
     browser = await launch(
         headless=headless,
+        executablePath=r"C:\Program Files\Google\Chrome\Application\chrome.exe",
         args=[
             '--no-sandbox',
             '--disable-setuid-sandbox',

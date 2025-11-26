@@ -11,7 +11,7 @@ CAPTCHA_INPUT_SELECTOR = "#simple-captcha-field"
 SUBMIT_BUTTON_SELECTOR = "button[data-action='demo_action']"
 
 
-async def solve_captcha(headless=False):
+async def solve_captcha(headless=True):
     browser = None
     try:
         browser, page = await init_browser(headless=headless)
